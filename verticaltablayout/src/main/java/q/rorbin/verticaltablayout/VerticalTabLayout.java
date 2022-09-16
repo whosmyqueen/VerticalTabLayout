@@ -1,5 +1,8 @@
 package q.rorbin.verticaltablayout;
 
+import static androidx.viewpager.widget.ViewPager.SCROLL_STATE_IDLE;
+import static androidx.viewpager.widget.ViewPager.SCROLL_STATE_SETTLING;
+
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,16 +11,17 @@ import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +32,13 @@ import q.rorbin.verticaltablayout.util.TabFragmentManager;
 import q.rorbin.verticaltablayout.widget.QTabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
-import static android.support.v4.view.ViewPager.SCROLL_STATE_IDLE;
-import static android.support.v4.view.ViewPager.SCROLL_STATE_SETTLING;
-
 /**
  * @author chqiu
- *         Email:qstumn@163.com
+ * Email:qstumn@163.com
  */
 public class VerticalTabLayout extends ScrollView {
+    public static int TAB_MODE_FIXED = 10;
+    public static int TAB_MODE_SCROLLABLE = 11;
     private Context mContext;
     private TabStrip mTabStrip;
     private int mColorIndicator;
@@ -46,10 +49,6 @@ public class VerticalTabLayout extends ScrollView {
     private float mIndicatorCorners;
     private int mTabMode;
     private int mTabHeight;
-
-    public static int TAB_MODE_FIXED = 10;
-    public static int TAB_MODE_SCROLLABLE = 11;
-
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
     private TabAdapter mTabAdapter;
@@ -59,6 +58,7 @@ public class VerticalTabLayout extends ScrollView {
     private DataSetObserver mPagerAdapterObserver;
 
     private TabFragmentManager mTabFragmentManager;
+    private float mLastPositionOffset;
 
     public VerticalTabLayout(Context context) {
         this(context, null);
@@ -166,8 +166,6 @@ public class VerticalTabLayout extends ScrollView {
             smoothScrollBy(0, tabTop - target);
         }
     }
-
-    private float mLastPositionOffset;
 
     private void scrollByTab(int position, final float positionOffset) {
         final TabView tabView = getTabAt(position);
@@ -347,13 +345,13 @@ public class VerticalTabLayout extends ScrollView {
         }
     }
 
-//    public void setTabPadding(int padding) {
-//
-//    }
-//
-//    public void setTabPadding(int start, int top, int end, int bottom) {
-//
-//    }
+    //    public void setTabPadding(int padding) {
+    //
+    //    }
+    //
+    //    public void setTabPadding(int start, int top, int end, int bottom) {
+    //
+    //    }
 
     public void addOnTabSelectedListener(OnTabSelectedListener listener) {
         if (listener != null) {
@@ -482,6 +480,13 @@ public class VerticalTabLayout extends ScrollView {
         } else {
             removeAllTabs();
         }
+    }
+
+    public interface OnTabSelectedListener {
+
+        void onTabSelected(TabView tab, int position);
+
+        void onTabReselected(TabView tab, int position);
     }
 
     private class TabStrip extends LinearLayout {
@@ -635,9 +640,9 @@ public class VerticalTabLayout extends ScrollView {
     }
 
     private class OnTabPageChangeListener implements ViewPager.OnPageChangeListener {
+        boolean mUpdataIndicator;
         private int mPreviousScrollState;
         private int mScrollState;
-        boolean mUpdataIndicator;
 
         public OnTabPageChangeListener() {
         }
@@ -676,12 +681,5 @@ public class VerticalTabLayout extends ScrollView {
         public void onInvalidated() {
             populateFromPagerAdapter();
         }
-    }
-
-    public interface OnTabSelectedListener {
-
-        void onTabSelected(TabView tab, int position);
-
-        void onTabReselected(TabView tab, int position);
     }
 }

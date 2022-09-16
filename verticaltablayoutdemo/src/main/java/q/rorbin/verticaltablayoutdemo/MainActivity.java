@@ -1,9 +1,6 @@
 package q.rorbin.verticaltablayoutdemo;
 
 import android.graphics.Color;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -11,15 +8,17 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import q.rorbin.badgeview.Badge;
-import q.rorbin.badgeview.DisplayUtil;
-import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
-import q.rorbin.verticaltablayout.widget.ITabView;
+import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.widget.TabView;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDragStateChanged(int dragState, Badge badge, View targetView) {
                         if (dragState == STATE_SUCCEED) {
-                            badge.setBadgeNumber(-1).stroke(0xFFFFFFFF,1,true);
+                            badge.setBadgeNumber(-1).stroke(0xFFFFFFFF, 1, true);
                         }
                     }
                 }).build());
@@ -72,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     private void initTab3() {
         VerticalTabLayout tablayout = (VerticalTabLayout) findViewById(R.id.tablayout);
         tablayout.setTabAdapter(new MyTabAdapter());
+    }
+
+    protected int dp2px(float dp) {
+        final float scale = this.getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 
     private class MyTabAdapter implements TabAdapter {
@@ -193,10 +197,5 @@ public class MainActivity extends AppCompatActivity {
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
-    }
-
-    protected int dp2px(float dp) {
-        final float scale = this.getResources().getDisplayMetrics().density;
-        return (int) (dp * scale + 0.5f);
     }
 }

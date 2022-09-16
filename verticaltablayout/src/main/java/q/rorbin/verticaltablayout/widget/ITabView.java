@@ -9,24 +9,24 @@ import q.rorbin.badgeview.Badge;
 
 /**
  * @author chqiu
- *         Email:qstumn@163.com
+ * Email:qstumn@163.com
  */
 
 public interface ITabView {
-
-    ITabView setBadge(TabBadge badge);
-
-    ITabView setIcon(TabIcon icon);
-
-    ITabView setTitle(TabTitle title);
 
     ITabView setBackground(int resid);
 
     TabBadge getBadge();
 
+    ITabView setBadge(TabBadge badge);
+
     TabIcon getIcon();
 
+    ITabView setIcon(TabIcon icon);
+
     TabTitle getTitle();
+
+    ITabView setTitle(TabTitle title);
 
     View getTabView();
 
