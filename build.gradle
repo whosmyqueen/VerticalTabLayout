@@ -3,26 +3,8 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven {
-            url 'https://maven.aliyun.com/repository/google'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://maven.aliyun.com/repository/central'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://maven.aliyun.com/repository/public'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://maven.aliyun.com/repository/gradle-plugin'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://jitpack.io'
-            allowInsecureProtocol true
-        }
+        google()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.2'
@@ -35,26 +17,8 @@ buildscript {
 allprojects {
     repositories {
         mavenCentral()
-        maven {
-            url 'https://maven.aliyun.com/repository/google'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://maven.aliyun.com/repository/central'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://maven.aliyun.com/repository/public'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://maven.aliyun.com/repository/gradle-plugin'
-            allowInsecureProtocol true
-        }
-        maven {
-            url 'https://jitpack.io'
-            allowInsecureProtocol true
-        }
+        google()
+        maven { url 'https://jitpack.io' }
     }
 }
 
