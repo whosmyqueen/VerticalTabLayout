@@ -3,11 +3,26 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://jitpack.io'
+            allowInsecureProtocol true
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.2'
@@ -20,11 +35,26 @@ buildscript {
 allprojects {
     repositories {
         mavenCentral()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+            allowInsecureProtocol true
+        }
+        maven {
+            url 'https://jitpack.io'
+            allowInsecureProtocol true
+        }
     }
 }
 
