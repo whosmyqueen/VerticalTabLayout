@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    compileSdk 33
 
     defaultConfig {
         applicationId "q.rorbin.verticaltablayoutdemo"
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion 25
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
@@ -20,9 +19,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile project(':verticaltablayout')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':verticaltablayout')
 //    compile 'q.rorbin:VerticalTabLayout:1.2.1'
 }

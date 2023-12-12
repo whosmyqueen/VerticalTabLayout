@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VerticalTabLayout.iml" filepath="$PROJECT_DIR$/VerticalTabLayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/verticaltablayout/verticaltablayout.iml" filepath="$PROJECT_DIR$/verticaltablayout/verticaltablayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/verticaltablayoutdemo/verticaltablayoutdemo.iml" filepath="$PROJECT_DIR$/verticaltablayoutdemo/verticaltablayoutdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/VerticalTabLayout.iml" filepath="$PROJECT_DIR$/.idea/VerticalTabLayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.main.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayout/VerticalTabLayout.verticaltablayout.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayoutdemo/VerticalTabLayout.verticaltablayoutdemo.unitTest.iml" />
     </modules>
   </component>
 </project>

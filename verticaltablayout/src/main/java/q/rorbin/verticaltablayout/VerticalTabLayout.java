@@ -1,5 +1,6 @@
 package q.rorbin.verticaltablayout;
 
+
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,16 +9,17 @@ import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +30,9 @@ import q.rorbin.verticaltablayout.util.TabFragmentManager;
 import q.rorbin.verticaltablayout.widget.QTabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
-import static android.support.v4.view.ViewPager.SCROLL_STATE_IDLE;
-import static android.support.v4.view.ViewPager.SCROLL_STATE_SETTLING;
-
 /**
  * @author chqiu
- *         Email:qstumn@163.com
+ * Email:qstumn@163.com
  */
 public class VerticalTabLayout extends ScrollView {
     private Context mContext;
@@ -95,7 +94,9 @@ public class VerticalTabLayout extends ScrollView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        if (getChildCount() > 0) removeAllViews();
+        if (getChildCount() > 0) {
+            removeAllViews();
+        }
         initTabStrip();
     }
 
@@ -347,13 +348,13 @@ public class VerticalTabLayout extends ScrollView {
         }
     }
 
-//    public void setTabPadding(int padding) {
-//
-//    }
-//
-//    public void setTabPadding(int start, int top, int end, int bottom) {
-//
-//    }
+    //    public void setTabPadding(int padding) {
+    //
+    //    }
+    //
+    //    public void setTabPadding(int start, int top, int end, int bottom) {
+    //
+    //    }
 
     public void addOnTabSelectedListener(OnTabSelectedListener listener) {
         if (listener != null) {
@@ -646,8 +647,8 @@ public class VerticalTabLayout extends ScrollView {
         public void onPageScrollStateChanged(int state) {
             mPreviousScrollState = mScrollState;
             mScrollState = state;
-            mUpdataIndicator = !(mScrollState == SCROLL_STATE_SETTLING
-                    && mPreviousScrollState == SCROLL_STATE_IDLE);
+            mUpdataIndicator = !(mScrollState == ViewPager.SCROLL_STATE_SETTLING
+                    && mPreviousScrollState == ViewPager.SCROLL_STATE_IDLE);
         }
 
         @Override

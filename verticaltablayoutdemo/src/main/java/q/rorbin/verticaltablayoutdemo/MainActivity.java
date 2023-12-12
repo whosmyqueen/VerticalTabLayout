@@ -1,9 +1,6 @@
 package q.rorbin.verticaltablayoutdemo;
 
 import android.graphics.Color;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -11,15 +8,17 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import q.rorbin.badgeview.Badge;
-import q.rorbin.badgeview.DisplayUtil;
-import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
-import q.rorbin.verticaltablayout.widget.ITabView;
+import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.widget.TabView;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDragStateChanged(int dragState, Badge badge, View targetView) {
                         if (dragState == STATE_SUCCEED) {
-                            badge.setBadgeNumber(-1).stroke(0xFFFFFFFF,1,true);
+                            badge.setBadgeNumber(-1).stroke(0xFFFFFFFF, 1, true);
                         }
                     }
                 }).build());
@@ -80,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
         public MyTabAdapter() {
             menus = new ArrayList<>();
-            Collections.addAll(menus, new MenuBean(R.drawable.man_01_pressed, R.drawable.man_01_none, "汇总")
-                    , new MenuBean(R.drawable.man_02_pressed, R.drawable.man_02_none, "图表")
-                    , new MenuBean(R.drawable.man_03_pressed, R.drawable.man_03_none, "收藏")
-                    , new MenuBean(R.drawable.man_04_pressed, R.drawable.man_04_none, "竞拍"));
+            Collections.addAll(menus, new MenuBean(R.mipmap.man_01_pressed, R.mipmap.man_01_none, "汇总")
+                    , new MenuBean(R.mipmap.man_02_pressed, R.mipmap.man_02_none, "图表")
+                    , new MenuBean(R.mipmap.man_03_pressed, R.mipmap.man_03_none, "收藏")
+                    , new MenuBean(R.mipmap.man_04_pressed, R.mipmap.man_04_none, "竞拍"));
         }
 
         @Override
@@ -144,13 +143,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public TabView.TabBadge getBadge(int position) {
-            if (position == 5) return new TabView.TabBadge.Builder().setBadgeNumber(666)
-                    .setExactMode(true)
-                    .setOnDragStateChangedListener(new Badge.OnDragStateChangedListener() {
-                        @Override
-                        public void onDragStateChanged(int dragState, Badge badge, View targetView) {
-                        }
-                    }).build();
+            if (position == 5) {
+                return new TabView.TabBadge.Builder().setBadgeNumber(666)
+                        .setExactMode(true)
+                        .setOnDragStateChangedListener(new Badge.OnDragStateChangedListener() {
+                            @Override
+                            public void onDragStateChanged(int dragState, Badge badge, View targetView) {
+                            }
+                        }).build();
+            }
             return null;
         }
 

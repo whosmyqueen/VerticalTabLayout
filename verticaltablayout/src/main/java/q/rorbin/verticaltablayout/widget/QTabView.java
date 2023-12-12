@@ -1,31 +1,25 @@
 package q.rorbin.verticaltablayout.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.Px;
-import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.Checkable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import q.rorbin.badgeview.Badge;
-import q.rorbin.badgeview.QBadgeView;
-import q.rorbin.verticaltablayout.util.DisplayUtil;
+import androidx.annotation.Px;
+import androidx.annotation.RequiresApi;
 
-import static android.R.attr.checked;
-import static android.R.attr.gravity;
+import q.rorbin.badgeview.Badge;
 
 /**
  * @author chqiu
- *         Email:qstumn@163.com
+ * Email:qstumn@163.com
  */
 public class QTabView extends TabView {
     private Context mContext;
@@ -58,7 +52,7 @@ public class QTabView extends TabView {
     }
 
     private void initView() {
-        setMinimumHeight(q.rorbin.badgeview.DisplayUtil.dp2px(mContext,25));
+        setMinimumHeight(q.rorbin.badgeview.DisplayUtil.dp2px(mContext, 25));
         if (mTitle == null) {
             mTitle = new TextView(mContext);
             LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
@@ -125,12 +119,14 @@ public class QTabView extends TabView {
         }
     }
 
+    @SuppressLint("WrongConstant")
     private void initTitleView() {
         mTitle.setTextColor(isChecked() ? mTabTitle.getColorSelected() : mTabTitle.getColorNormal());
         mTitle.setTextSize(mTabTitle.getTitleTextSize());
         mTitle.setText(mTabTitle.getContent());
         mTitle.setGravity(Gravity.CENTER);
         mTitle.setEllipsize(TextUtils.TruncateAt.END);
+        mTitle.setTypeface(Typeface.defaultFromStyle(mTabTitle.getTypeface()));
         refreshDrawablePadding();
     }
 

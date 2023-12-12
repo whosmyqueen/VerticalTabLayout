@@ -1,6 +1,7 @@
 package q.rorbin.verticaltablayout.widget;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.View;
@@ -9,7 +10,7 @@ import q.rorbin.badgeview.Badge;
 
 /**
  * @author chqiu
- *         Email:qstumn@163.com
+ * Email:qstumn@163.com
  */
 
 public interface ITabView {
@@ -135,17 +136,30 @@ public interface ITabView {
             return mBuilder.mContent;
         }
 
+
+        public int getTypeface() {
+            return mBuilder.typeface;
+        }
+
         public static class Builder {
             private int mColorSelected;
             private int mColorNormal;
             private int mTitleTextSize;
             private String mContent;
 
+            private int typeface;
+
             public Builder() {
                 this.mColorSelected = 0xFFFF4081;
                 this.mColorNormal = 0xFF757575;
                 this.mTitleTextSize = 16;
                 this.mContent = "";
+                this.typeface = Typeface.NORMAL;
+            }
+
+            public Builder setTypeface(int typeface) {
+                this.typeface = typeface;
+                return this;
             }
 
             public Builder setTextColor(int colorSelected, int colorNormal) {
