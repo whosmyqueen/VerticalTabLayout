@@ -20,8 +20,11 @@ import android.widget.ScrollView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,13 +52,13 @@ public class VerticalTabLayout extends ScrollView {
     private float mIndicatorCorners;
     private int mTabMode;
     private int mTabHeight;
-    private ViewPager mViewPager;
-    private PagerAdapter mPagerAdapter;
+    private ViewPager2 mViewPager;
+    private RecyclerView.Adapter mPagerAdapter;
     private TabAdapter mTabAdapter;
 
     private List<OnTabSelectedListener> mTabSelectedListeners;
     private OnTabPageChangeListener mTabPageChangeListener;
-    private DataSetObserver mPagerAdapterObserver;
+    private RecyclerView.AdapterDataObserver mPagerAdapterObserver;
 
     private TabFragmentManager mTabFragmentManager;
     private float mLastPositionOffset;
@@ -401,13 +404,13 @@ public class VerticalTabLayout extends ScrollView {
         setupWithFragment(manager, containerResid, fragments);
     }
 
-    public void setupWithViewPager(@Nullable ViewPager viewPager) {
+    public void setupWithViewPager(@Nullable ViewPager2 viewPager) {
         if (mViewPager != null && mTabPageChangeListener != null) {
-            mViewPager.removeOnPageChangeListener(mTabPageChangeListener);
+            mViewPager.unregisterOnPageChangeCallback(mTabPageChangeListener);
         }
 
         if (viewPager != null) {
-            final PagerAdapter adapter = viewPager.getAdapter();
+            final FragmentStateAdapter adapter = (FragmentStateAdapter) viewPager.getAdapter();
             if (adapter == null) {
                 throw new IllegalArgumentException("ViewPager does not have a PagerAdapter set");
             }
@@ -417,12 +420,12 @@ public class VerticalTabLayout extends ScrollView {
             if (mTabPageChangeListener == null) {
                 mTabPageChangeListener = new OnTabPageChangeListener();
             }
-            viewPager.addOnPageChangeListener(mTabPageChangeListener);
+            viewPager.registerOnPageChangeCallback(mTabPageChangeListener);
 
             addOnTabSelectedListener(new OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabView tab, int position) {
-                    if (mViewPager != null && mViewPager.getAdapter().getCount() >= position) {
+                    if (mViewPager != null && mViewPager.getAdapter().getItemCount() >= position) {
                         mViewPager.setCurrentItem(position);
                     }
                 }
@@ -439,9 +442,9 @@ public class VerticalTabLayout extends ScrollView {
         }
     }
 
-    private void setPagerAdapter(@Nullable final PagerAdapter adapter, final boolean addObserver) {
+    private void setPagerAdapter(@Nullable final FragmentStateAdapter adapter, final boolean addObserver) {
         if (mPagerAdapter != null && mPagerAdapterObserver != null) {
-            mPagerAdapter.unregisterDataSetObserver(mPagerAdapterObserver);
+            mPagerAdapter.unregisterAdapterDataObserver(mPagerAdapterObserver);
         }
 
         mPagerAdapter = adapter;
@@ -450,7 +453,7 @@ public class VerticalTabLayout extends ScrollView {
             if (mPagerAdapterObserver == null) {
                 mPagerAdapterObserver = new PagerAdapterObserver();
             }
-            adapter.registerDataSetObserver(mPagerAdapterObserver);
+            adapter.registerAdapterDataObserver(mPagerAdapterObserver);
         }
 
         populateFromPagerAdapter();
@@ -459,7 +462,7 @@ public class VerticalTabLayout extends ScrollView {
     private void populateFromPagerAdapter() {
         removeAllTabs();
         if (mPagerAdapter != null) {
-            final int adapterCount = mPagerAdapter.getCount();
+            final int adapterCount = mPagerAdapter.getItemCount();
             if (mPagerAdapter instanceof TabAdapter) {
                 setTabAdapter((TabAdapter) mPagerAdapter);
             } else {
@@ -639,7 +642,7 @@ public class VerticalTabLayout extends ScrollView {
 
     }
 
-    private class OnTabPageChangeListener implements ViewPager.OnPageChangeListener {
+    private class OnTabPageChangeListener extends ViewPager2.OnPageChangeCallback {
         boolean mUpdataIndicator;
         private int mPreviousScrollState;
         private int mScrollState;
@@ -671,7 +674,7 @@ public class VerticalTabLayout extends ScrollView {
         }
     }
 
-    private class PagerAdapterObserver extends DataSetObserver {
+    private class PagerAdapterObserver extends RecyclerView.AdapterDataObserver {
         @Override
         public void onChanged() {
             populateFromPagerAdapter();
